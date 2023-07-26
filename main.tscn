@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://be18r7jsab2rt"]
+[gd_scene load_steps=11 format=3 uid="uid://be18r7jsab2rt"]
 
 [ext_resource type="Material" uid="uid://d0gmvf62uyhd0" path="res://addons/kenney_prototype_tools/materials/red/material_01.tres" id="1_r0t8i"]
 [ext_resource type="PackedScene" uid="uid://b4qvt86p6nbss" path="res://objects/robot/robot.tscn" id="2_tay0j"]
@@ -25,7 +25,22 @@ size = Vector2(10, 10)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vk4kc"]
 data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4bgqd"]
+friction = 0.74
+bounce = 0.46
+
+[sub_resource type="SphereMesh" id="SphereMesh_ks3eb"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c2taj"]
+radius = 0.05
+
 [node name="Root" type="Node"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.79069, -0.246569, 0.560369, 0, 0.915311, 0.402747, -0.612217, -0.318448, 0.723727, 0.138731, 0.186848, 0.160412)
+metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_k7rn6")
@@ -47,6 +62,13 @@ shape = SubResource("ConcavePolygonShape3D_vk4kc")
 
 [node name="Robot" parent="." instance=ExtResource("2_tay0j")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.79069, -0.246569, 0.560369, 0, 0.915311, 0.402747, -0.612217, -0.318448, 0.723727, 0.138731, 0.186848, 0.160412)
-metadata/_edit_lock_ = true
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.173842, 0.05, -0.178886)
+mass = 0.2
+physics_material_override = SubResource("PhysicsMaterial_4bgqd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_ks3eb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_c2taj")

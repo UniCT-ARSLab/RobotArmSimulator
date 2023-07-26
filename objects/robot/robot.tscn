@@ -48,6 +48,8 @@ script = ExtResource("1_nqrb4")
 [node name="Wrist" type="RigidBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0117636, 0.306366, -0.0187458)
 mass = 0.1
+script = ExtResource("4_473ep")
+rotation_axis = "Y"
 
 [node name="Arm03" type="MeshInstance3D" parent="Wrist"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00498212, 0, -1.86265e-09)
@@ -69,12 +71,13 @@ node_b = NodePath("../Wrist")
 params/bias = 0.99
 angular_limit/upper = 1.65806
 angular_limit/lower = -1.65806
-angular_limit/bias = 0.99
+angular_limit/bias = 0.5
 angular_limit/softness = 0.01
 
 [node name="Arm2" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0056607, 0.216, -0.0138252)
 mass = 0.1
+script = ExtResource("4_473ep")
 
 [node name="Arm02V3" type="MeshInstance3D" parent="Arm2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.0350115, 0)
@@ -102,7 +105,7 @@ params/bias = 0.99
 angular_limit/enable = true
 angular_limit/upper = 1.65806
 angular_limit/lower = -1.65806
-angular_limit/bias = 0.99
+angular_limit/bias = 0.5
 angular_limit/softness = 0.01
 
 [node name="Arm1" type="RigidBody3D" parent="."]
@@ -126,12 +129,13 @@ node_a = NodePath("../Waist")
 node_b = NodePath("../Arm1")
 params/bias = 0.99
 angular_limit/enable = true
-angular_limit/bias = 0.99
 angular_limit/softness = 0.01
 
 [node name="Waist" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0558067, 0)
 mass = 0.02
+script = ExtResource("4_473ep")
+rotation_axis = "Y"
 
 [node name="Waist" type="MeshInstance3D" parent="Waist"]
 mesh = ExtResource("1_tsmxy")
@@ -145,8 +149,10 @@ shape = SubResource("CylinderShape3D_sv3b8")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.055731, 0)
 node_a = NodePath("../Base")
 node_b = NodePath("../Waist")
+params/bias = 0.99
 angular_limit/upper = -3.14159
 angular_limit/lower = -1.0472
+angular_limit/softness = 0.01
 
 [node name="Base" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0713179, 0)
