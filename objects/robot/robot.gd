@@ -19,16 +19,16 @@ func _ready():
 	
 	server = UDPServer.new()
 	server.listen(udpPort)
-	#otorBase["motor/enable"] = true
-	#motorArm1["motor/enable"] = false
-	#motorArm2["motor/enable"] = false
-	#motorWrist["motor/enable"] = false
+	$motorBase["motor/enable"] = true
+	$motorArm1["motor/enable"] = false
+	#$motorArm2["motor/enable"] = true
+	#$motorWrist["motor/enable"] = true
 	
 	
-	#motorBase.set_param(HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY,0)
+	$motorBase.set_param(HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY,0)
 	#motorArm1.set_param(HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY,0)
-	#motorArm2.set_param(HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY,0)
-	#motorWrist.set_param(HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY,0)
+	#$motorArm2.set_param(HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY,0)
+	#$motorWrist.set_param(HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY,0)
 	pass
 
 
@@ -47,22 +47,22 @@ func _physics_process(delta):
 		arm2.setTorque(torque_arm_2)
 		wrist.setTorque(torque_wrist)
 		
-		var tosend =  PackedByteArray()
+		var tosend =  PackedFloat32Array()
 		tosend.append(delta)
 		
-		tosend.append_array(var_to_bytes(waist.linear_velocity))
-		tosend.append_array(var_to_bytes(waist.angular_velocity))
+		tosend.append(waist.global_rotation.x)
+		tosend.append(waist.angular_velocity.x)
 		
-		tosend.append_array(var_to_bytes(arm1.linear_velocity))
-		tosend.append_array(var_to_bytes(arm1.angular_velocity))
+		tosend.append(arm1.global_rotation.x)
+		tosend.append(arm1.angular_velocity.x)
 		
-		tosend.append_array(var_to_bytes(arm2.linear_velocity))
-		tosend.append_array(var_to_bytes(arm2.angular_velocity))
+		tosend.append(arm2.global_rotation.x)
+		tosend.append(arm2.angular_velocity.x)
 		
-		tosend.append_array(var_to_bytes(wrist.linear_velocity))
-		tosend.append_array(var_to_bytes(wrist.angular_velocity))
+		tosend.append(wrist.global_rotation.x)
+		tosend.append(wrist.angular_velocity.x)
 		#print(tosend)
-		peer.put_packet(tosend)
+		peer.put_var(tosend)
 	#var motorBaseDirection = Input.get_axis("ui_left", "ui_right")
 	#var motorArm1Direction = Input.get_axis("ui_down", "ui_up")
 	

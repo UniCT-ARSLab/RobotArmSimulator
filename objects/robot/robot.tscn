@@ -47,7 +47,7 @@ script = ExtResource("1_nqrb4")
 
 [node name="Wrist" type="RigidBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0117636, 0.306366, -0.0187458)
-mass = 0.1
+mass = 0.5
 script = ExtResource("4_473ep")
 rotation_axis = "Y"
 
@@ -76,7 +76,7 @@ angular_limit/softness = 0.01
 
 [node name="Arm2" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0056607, 0.216, -0.0138252)
-mass = 0.1
+mass = 0.5
 script = ExtResource("4_473ep")
 
 [node name="Arm02V3" type="MeshInstance3D" parent="Arm2"]
@@ -110,7 +110,7 @@ angular_limit/softness = 0.01
 
 [node name="Arm1" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353243, 0.0959918, -0.0137799)
-mass = 0.1
+mass = 0.5
 script = ExtResource("4_473ep")
 
 [node name="Arm01" type="MeshInstance3D" parent="Arm1"]
@@ -133,7 +133,7 @@ angular_limit/softness = 0.01
 
 [node name="Waist" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0558067, 0)
-mass = 0.02
+mass = 0.5
 script = ExtResource("4_473ep")
 rotation_axis = "Y"
 
